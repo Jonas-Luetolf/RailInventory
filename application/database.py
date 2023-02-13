@@ -46,10 +46,10 @@ class DataBase:
         :return: the data of the searched train
         """
         
-        query = f"""SELECT * FROM trains WHERE name = {name}"""
+        query = """SELECT * FROM trains WHERE name = ?"""
         
-        result = self.cursor.execute(query)
-        result.fetchone()
+        result = self.cursor.execute(query, (name, ))
+        result = result.fetchall()
 
         return result
         
@@ -64,8 +64,8 @@ class DataBase:
         :return: None
         """
         
-        query = f"""INSERT INTO trains (name, number, producer, comment)
-        VALUES ({name}, {num}, {producer}, {comment})"""
+        query = """INSERT INTO trains (name, number, producer, comment)
+        VALUES (?, ?, ?, ?)"""
 
-        self.cursor.execute(query)
+        self.cursor.execute(query, (name, num, producer, comment))
         self.conn.commit()
