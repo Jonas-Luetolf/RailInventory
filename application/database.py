@@ -46,8 +46,13 @@ class DataBase:
         :return: the data of the searched train
         """
         
-        raise NotImplemented
+        query = f"""SELECT * FROM trains WHERE name = {name}"""
+        
+        result = self.cursor.execute(query)
+        result.fetchone()
 
+        return result
+        
     def add_train(self, name:str, num:int, producer:str, comment:str) -> None:
         """
         add a new trains
