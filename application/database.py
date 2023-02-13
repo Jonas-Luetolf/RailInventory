@@ -3,13 +3,12 @@ import sqlite3
 class DataBase:
     """
     used to write to and read from a local DataBase
+    :param file: filename of sqlite database
     """
+
     def __init__(self, file:str) -> None:
         """
         connets to file and creates cursor
-        
-        :param file: filename of the sqlite database 
-        :return: None
         """
         
         self.conn = sqlite3.connect(file)
