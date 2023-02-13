@@ -3,12 +3,13 @@ import sqlite3
 class DataBase:
     """
     used to write to and read from a local DataBase
-    :param file: filename of sqlite database
     """
 
     def __init__(self, file:str) -> None:
         """
         connets to file and creates cursor
+        
+        :param file: filename of sqlite database
         """
         
         self.conn = sqlite3.connect(file)
@@ -32,8 +33,9 @@ class DataBase:
         :return: None
         """
         
-        query = f"""CREATE TABLE IF NOT EXISTS trains 
-        (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, number INTEGER, producer TEXT, comment TEXT)"""
+        query = """CREATE TABLE IF NOT EXISTS trains 
+        (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,
+        number INTEGER, producer TEXT, comment TEXT)"""
         
         self.cursor.execute(query)
         self.conn.commit()
