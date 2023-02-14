@@ -26,7 +26,7 @@ class DataBase:
         
         self.conn.close()
 
-    def _create_table(self):
+    def _create_table(self) -> None:
         """
         creates new tabel if one doesn't exists
         
@@ -40,7 +40,7 @@ class DataBase:
         self.cursor.execute(query)
         self.conn.commit()
 
-    def get_train_by_name(self, name:str):
+    def get_train_by_name(self, name:str) -> list:
         """
         gets the train by name
         
@@ -50,11 +50,23 @@ class DataBase:
         
         query = """SELECT * FROM trains WHERE name = ?"""
         
-        result = self.cursor.execute(query, (name, ))
-        result = result.fetchall()
+        result = self.cursor.execute(query, (name, )).fetchall()
+        
+        return result
+    
+    def get_all_trains(self) -> list:
+        """
+        gets all trains from the database
+
+        :return: list of all trains
+        """
+
+        query = """SELECT * FROM trains"""
+
+        result = self.cursor.execute(query).fetchall()
 
         return result
-        
+
     def add_train(self, name:str, num:int, producer:str, comment:str) -> None:
         """
         add a new trains
