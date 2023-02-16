@@ -1,4 +1,10 @@
 import sqlite3
+from enum import Enum
+
+
+class TrainType(Enum):
+    LOCOMOTIVE = 1
+    WAGON = 2
 
 
 class DataBase:
@@ -29,49 +35,61 @@ class DataBase:
 
     def _create_table(self) -> None:
         """
-        creates new tabel if one doesn't exists
+        creates new tabels if one doesn't exists
 
         :return: None
         """
 
-        query = """CREATE TABLE IF NOT EXISTS trains 
+        query = """CREATE TABLE IF NOT EXISTS LOCOMOTIVE 
         (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,
         number INTEGER, producer TEXT, comment TEXT)"""
 
         self.cursor.execute(query)
         self.conn.commit()
 
-    def get_train_by_name(self, name: str) -> list:
+        query = """CREATE TABLE IF NOT EXISTS WAGON 
+        (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,
+        number INTEGER, producer TEXT, comment TEXT)"""
+
+        self.cursor.execute(query)
+        self.conn.commit()
+
+    def get_train_by_name(self, train_type: TrainType, name: str) -> list:
         """
         gets the train by name
 
+        :param train_type: type of the train (locomotive or wagon)
         :param name: name of the train to search for
         :return: the data of the searched train
         """
 
-        query = """SELECT * FROM trains WHERE name = ?"""
+        query = f"""SELECT * FROM {train_type.name} WHERE name = ?"""
 
         result = self.cursor.execute(query, (name,)).fetchall()
 
         return result
 
-    def get_all_trains(self) -> list:
+    def get_all_trains(self, train_type: TrainType) -> list:
         """
         gets all trains from the database
 
+        :param train_type: type of the train
         :return: list of all trains
         """
 
-        query = """SELECT * FROM trains"""
+        query = f"""SELECT * FROM {train_type.name}"""
 
         result = self.cursor.execute(query).fetchall()
 
         return result
 
-    def add_train(self, name: str, num: int, producer: str, comment: str) -> None:
+    def add_train(
+        self, train_type: TrainType, name: str, num: int, producer: str, comment: str
+    ) -> None:
         """
         add a new trains
 
+        :param train_type: type of the train
         :param name: name of the train
         :param num: number of the train
         :param producer: producer of the train
@@ -79,7 +97,7 @@ class DataBase:
         :return: None
         """
 
-        query = """INSERT INTO trains (name, number, producer, comment)
+        query = f"""INSERT INTO {train_type.name} (name, number, producer, comment)
         VALUES (?, ?, ?, ?)"""
 
         self.cursor.execute(query, (name, num, producer, comment))
