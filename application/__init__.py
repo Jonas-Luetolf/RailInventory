@@ -8,7 +8,7 @@ def create_app() -> Flask:
 
     :return: Flask app
     """
-    
+
     app = Flask("RailInventory")
     app.register_blueprint(routes)
 

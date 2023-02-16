@@ -1,5 +1,6 @@
 from application import create_app
 
+
 def main():
     """
     entry point for RailInventory
