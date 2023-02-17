@@ -69,6 +69,20 @@ class DataBase:
 
         return result
 
+    def get_train_by_id(self, train_type: TrainType, id: int) -> list:
+        """
+        gets a train by its id
+
+        :param train_type: type of the train
+        :param id: id of the train
+        :return: the data of the searched train
+        """
+        query = f"""SELECT * FROM {train_type.name} WHERE id = ?"""
+
+        result = self.cursor.execute(query, (id,)).fetchall()
+
+        return result
+
     def get_all_trains(self, train_type: TrainType) -> list:
         """
         gets all trains from the database
