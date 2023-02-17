@@ -1,4 +1,5 @@
 from application import create_app
+import config
 
 
 def main():
