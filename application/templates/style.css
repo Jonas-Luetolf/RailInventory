@@ -1,0 +1,22 @@
+.navbar{
+	background-color: #0f5ef2;
+	color: white;
+	padding: 5px;
+}
+
+.navbaritem{
+	color: white;
+	font-family: 'Helvetica', serif;
+	font-size: 30pt;
+	text-decoration: none;
+	padding: 5px;
+	margin-right: 25px;
+	margin-left: 25px;
+}
+
+.navbaritem:hover{
+	color: red;
+	background-color: #6695ed;
+	border-radius: 60px;
+	padding: 5px;
+}
