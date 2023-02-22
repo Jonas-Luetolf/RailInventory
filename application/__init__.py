@@ -9,7 +9,7 @@ def create_app() -> Flask:
     :return: Flask app
     """
 
-    app = Flask("RailInventory")
+    app = Flask("RailInventory", static_folder="application/static")
     app.register_blueprint(routes)
 
     return app
