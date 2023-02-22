@@ -17,6 +17,8 @@ body {
   width: 100%;
   height: auto;
   background-color: #88C0D0;
+	position: sticky;
+	top: 0%;
 }
 
 .logo,
