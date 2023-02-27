@@ -1,2 +1,31 @@
 {% extends "base.html" %}
 {% block title %}RailInventory - Start{% endblock %}
+
+
+
+{% block content %}
+
+	<table>
+		
+		<tr>
+			<th>Name</th>
+			<th>Nummer</th>
+			<th>Hersteller</th>
+			<th>Kommentar</th>
+		</tr>
+
+		{% for locomotive in locomotives %}
+		
+			<tr>
+				
+				{% for item in locomotive %}
+				<td>item</td>
+				{% endfor %}
+			
+			</tr>
+
+		{% endfor %}
+
+	</table>
+
+{% endblock %}
