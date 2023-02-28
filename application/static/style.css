@@ -47,6 +47,15 @@ body {
   color: #D8DEE9;
  }
 
+
+#content {
+	margin: 40px;
+	padding: 20px;
+	border-radius: 5px;
+	background-color: #4C566A;
+}
+
+
 table {
   width: 100%;
 }
@@ -54,4 +63,5 @@ table {
 table, th, td {
 	border-bottom: 1px solid #88C0D0;
 	border-collapse: collapse;
+	text-align: center;
 }
