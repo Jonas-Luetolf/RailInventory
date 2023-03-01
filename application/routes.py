@@ -23,3 +23,7 @@ def overview():
     """
 
     raise NotImplemented
+
+@routes.route("/add", methods=["GET","POST"])
+def add():
+    return render_template("add.html")
