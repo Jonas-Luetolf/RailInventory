@@ -51,13 +51,17 @@ body {
 #content {
 	margin: 40px;
 	padding: 20px;
-	border-radius: 5px;
+	border-radius: 10px;
 	background-color: #4C566A;
 }
 
 
 table {
   width: 100%;
+}
+
+th {
+	padding-bottom: 10px;
 }
 
 table, th, td {
