@@ -8,7 +8,7 @@ def main():
     """
 
     app = create_app()
-    app.run(host="localhost", port=5000)
+    app.run(host="localhost", port=5000, ssl_context=config.Config.SSL_CONTEXT)
 
 
 if __name__ == "__main__":
