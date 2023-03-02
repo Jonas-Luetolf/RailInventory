@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, redirect, render_template, request, url_for
 
 routes = Blueprint("routes", __name__, url_prefix="/", template_folder="templates")
 
@@ -26,4 +26,8 @@ def overview():
 
 @routes.route("/add", methods=["GET","POST"])
 def add():
-    return render_template("add.html")
+    if request.method == "GET":
+        return render_template("add.html")
+
+    else:
+        return redirect(url_for("routes.index"))
