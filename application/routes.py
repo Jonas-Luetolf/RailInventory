@@ -19,13 +19,20 @@ def overview():
     """
     renders the overview template and inserts a list of all trains
 
-    :route: rendered template
+    :return: rendered template
     """
 
     raise NotImplemented
 
-@routes.route("/add", methods=["GET","POST"])
+
+@routes.route("/add", methods=["GET", "POST"])
 def add():
+    """
+    renders the add page or handels submited data
+
+    :return:rendered template or redirect to index
+    """
+
     if request.method == "GET":
         return render_template("add.html")
 
