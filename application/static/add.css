@@ -1,0 +1,22 @@
+textarea, input[type=text] {
+	border-radius: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #88C0D0;
+	width: 30%;
+	height:30px;
+	border-width:2px;
+	border-style: inset;	
+
+}
+
+textarea:focus, input[type=text]:focus {
+	outline: none;
+	border:2px solid #D08770;
+}
+
+textarea {
+	height: 150px;
+  resize: none;
+
+}

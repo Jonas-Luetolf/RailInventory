@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block title %}RailInventory - Neu{% endblock %}
 
-
+{% block headlinks %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='add.css') }}"></link>	
+{% endblock %}
 
 {% block content %}
 <div id="content">
@@ -13,7 +15,7 @@
 		<label for="producer">Hersteller</label><br>
   	<input type="text" id="producer" name="Hersteller"><br>
   	<label for="comment">Kommentar</label><br>
-  	<input type="text" id="comment" name="Kommentar"><br><br>
+  	<textarea type="text" id="comment" name="Kommentar" rows=5></textarea><br><br>
 		<button type="submit">Submit</button>
 
 	</form>
