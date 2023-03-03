@@ -1,22 +1,37 @@
 textarea, input[type=text] {
-	border-radius: 10px;
-	padding-left: 5px;
-	padding-right: 5px;
-	background-color: #88C0D0;
-	width: 30%;
-	height:30px;
-	border-width:2px;
-	border-style: inset;	
-
+    /* border-radius: 10px; */
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #4C566A;
+    width: 30%;
+    height: 30px;
+    /* border-width: 2px; */
+    /* border-style: solid; */
+    border: none;
+    border-color: #ECEFF4;
+    border-bottom: 2px solid #88C0D0;
 }
 
 textarea:focus, input[type=text]:focus {
 	outline: none;
-	border:2px solid #D08770;
+	border-bottom:2px solid #D08770;
 }
 
 textarea {
 	height: 150px;
   resize: none;
 
+}
+
+button[type=submit] {
+	border-radius: 10px;
+	border: 1px solid #ECEFF4;
+	background-color: #4C566A;	
+	color: #ECEFF4;
+	height: 30px;
+}
+
+button[type=submit]:hover {
+	color: #88C0D0;
+	border-color: #88C0D0;
 }
