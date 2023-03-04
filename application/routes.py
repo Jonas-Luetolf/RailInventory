@@ -1,4 +1,6 @@
 from flask import Blueprint, redirect, render_template, request, url_for
+from .database import DataBase, TrainType
+from config import Config
 
 routes = Blueprint("routes", __name__, url_prefix="/", template_folder="templates")
 
@@ -36,5 +38,9 @@ def add():
     if request.method == "GET":
         return render_template("add.html")
 
-    else:
+    elif request.method == "POST":
+        db = DataBase(Config.DATABASE)
+        db.add_train(TrainType.LOCOMOTIVE, **request.form)
+        db.close()
+
         return redirect(url_for("routes.index"))
