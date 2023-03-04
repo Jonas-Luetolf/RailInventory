@@ -1,4 +1,5 @@
 import sqlite3
+from pathlib import Path
 from enum import Enum
 
 
@@ -12,7 +13,7 @@ class DataBase:
     used to write to and read from a local DataBase
     """
 
-    def __init__(self, file: str) -> None:
+    def __init__(self, file: Path) -> None:
         """
         connets to file and creates cursor
 

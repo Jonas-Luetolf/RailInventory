@@ -1,2 +1,38 @@
 {% extends "base.html" %}
 {% block title %}RailInventory - Neu{% endblock %}
+
+{% block headlinks %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='form.css') }}"></link>	
+{% endblock %}
+
+{% block content %}
+<div id="content">
+	<form method="post" action="/add">
+		
+		<select name="train_type" id="train_type">
+			<option value="LOCOMOTIVE">Lokomotive</option>
+			<option value="WAGON">Wagen</option>
+		</select><br>
+		<label for="train_type">Zug Typ</label><br>
+
+		<input type="text" id="name" name="name"><br>
+  	<label for="name">Name</label><br>
+		
+  	<input type="text" id="num" name="num"><br>
+		<label for="num">Nummer</label><br>
+
+  	<input type="text" id="producer" name="producer"><br>
+		<label for="producer">Hersteller</label><br>
+
+  	<textarea type="text" id="comment" name="comment" rows=5></textarea><br>
+		<label for="comment">Kommentar</label><br><br>
+		<button type="submit">speichern</button>
+
+	</form>
+
+
+</div>
+
+
+
+{% endblock %}
