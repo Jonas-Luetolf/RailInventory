@@ -1,16 +1,19 @@
 textarea, input[type=text] {
-    /* border-radius: 10px; */
     padding-left: 5px;
     padding-right: 5px;
-    background-color: #4C566A;
-    width: 30%;
+    
+		background-color: #4C566A;
+    color: #ECEFF4;
+
+		width: 30%;
     height: 30px;
-    /* border-width: 2px; */
-    /* border-style: solid; */
-    border: none;
-    border-color: #ECEFF4;
+    
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 14px;
+		border: none;
     border-bottom: 2px solid #88C0D0;
-}
+
+	}
 
 textarea:focus, input[type=text]:focus {
 	outline: none;
