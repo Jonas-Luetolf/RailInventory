@@ -39,8 +39,13 @@ def add():
         return render_template("add.html")
 
     elif request.method == "POST":
+        data = dict(request.form)
+        data["train_type"] = TrainType[data["train_type"]]
+
+        # TODO add data check
+
         db = DataBase(Config.DATABASE)
-        db.add_train(TrainType.LOCOMOTIVE, **request.form)
+        db.add_train(**data)
         db.close()
 
         return redirect(url_for("routes.index"))

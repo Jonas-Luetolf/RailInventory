@@ -9,7 +9,7 @@ textarea, input[type=text] {
     height: 30px;
     
 		font-family: Arial, Helvetica, sans-serif;
-		font-size: 14px;
+		font-size: 16px;
 		border: none;
     border-bottom: 2px solid #88C0D0;
 
@@ -37,4 +37,21 @@ button[type=submit] {
 button[type=submit]:hover {
 	color: #88C0D0;
 	border-color: #88C0D0;
+}
+
+select {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	border: none;
+	border-bottom: 2px solid #88C0D0;
+	background-color: #4C566A;
+	color: #ECEFF4;
+}
+
+select:focus {
+	border-bottom: 2px solid #D08770;
+}
+
+label {
+	font-size: 14px;
 }
