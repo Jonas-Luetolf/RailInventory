@@ -14,8 +14,8 @@ def index():
     """
     db = DataBase(Config.DATABASE)
     locomotives = db.get_all_trains(train_type=TrainType.LOCOMOTIVE)
-
-    return render_template("index.html", locomotives=locomotives)
+    wagons = db.get_all_trains(train_type=TrainType.WAGON)
+    return render_template("index.html", locomotives=locomotives, wagons=wagons)
 
 
 @routes.route("/overview", methods=["GET"])
