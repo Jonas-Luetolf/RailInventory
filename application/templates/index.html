@@ -19,17 +19,13 @@
 		
 			<tr>
 				
-				{% for item in locomotive %}
-				<td>item</td>
+				{% for item in locomotive[1:] %}
+				<td>{{ item }}</td>
 				{% endfor %}
 			
 			</tr>
 
 		{% endfor %}
-	
-	<tr> <td>test</td> <td>test</td> <td>test</td> <td>test</td> </tr>
-	<tr> <td>test</td> <td>test</td> <td>test</td> <td>test</td> </tr>
-	
 	</table>
 	
 	</div>

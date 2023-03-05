@@ -12,8 +12,10 @@ def index():
 
     :return: rendered template
     """
+    db = DataBase(Config.DATABASE)
+    locomotives = db.get_all_trains(train_type=TrainType.LOCOMOTIVE)
 
-    return render_template("index.html")
+    return render_template("index.html", locomotives=locomotives)
 
 
 @routes.route("/overview", methods=["GET"])
