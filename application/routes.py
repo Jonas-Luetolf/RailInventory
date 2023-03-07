@@ -1,6 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, url_for
 from .database import DataBase, TrainType
 from config import Config
+from forms.trains import AddForm
 
 routes = Blueprint("routes", __name__, url_prefix="/", template_folder="templates")
 
@@ -36,18 +37,16 @@ def add():
 
     :return:rendered template or redirect to index
     """
-
-    if request.method == "GET":
-        return render_template("add.html")
-
-    elif request.method == "POST":
-        data = dict(request.form)
+    form = AddForm()
+    if request.method == "POST" and form.validate():
+        data = form.data
+        del data["csrf_token"]
         data["train_type"] = TrainType[data["train_type"]]
-
-        # TODO add data check
 
         db = DataBase(Config.DATABASE)
         db.add_train(**data)
         db.close()
 
         return redirect(url_for("routes.index"))
+
+    return render_template("add.html", form=form)

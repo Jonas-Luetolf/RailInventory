@@ -99,7 +99,7 @@ class DataBase:
         return result
 
     def add_train(
-        self, train_type: TrainType, name: str, num: int, producer: str, comment: str
+        self, train_type: TrainType, name: str, number: int, producer: str, comment: str
     ) -> None:
         """
         add a new trains
@@ -115,5 +115,5 @@ class DataBase:
         query = f"""INSERT INTO {train_type.name} (name, number, producer, comment)
         VALUES (?, ?, ?, ?)"""
 
-        self.cursor.execute(query, (name, num, producer, comment))
+        self.cursor.execute(query, (name, number, producer, comment))
         self.conn.commit()
