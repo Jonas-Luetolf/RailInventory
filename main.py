@@ -1,5 +1,5 @@
 from application import create_app
-import config
+from config import Config
 
 
 def main():
@@ -8,7 +8,7 @@ def main():
     """
 
     app = create_app()
-    app.run(host="localhost", port=5000, ssl_context=config.Config.SSL_CONTEXT)
+    app.run(host="localhost", ssl_context=Config.SSL_CONTEXT)
 
 
 if __name__ == "__main__":
