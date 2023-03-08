@@ -1,14 +1,11 @@
 {% extends "base.html" %}
 {% block title %}RailInventory - Start{% endblock %}
 
-
-
 {% block content %}
-	<div id="content">
 	
 	<h1>Lokomotiven</h1>
+	
 	<table>
-		
 		<tr>
 			<th>Name</th>
 			<th>Nummer</th>
@@ -16,22 +13,20 @@
 			<th>Kommentar</th>
 		</tr>
 
-		{% for locomotive in locomotives %}
-		
-			<tr>
-				
+		{% for locomotive in locomotives %}	
+			<tr>				
 				{% for item in locomotive[1:] %}
 				<td>{{ item }}</td>
 				{% endfor %}
-			
 			</tr>
-
 		{% endfor %}
 	</table>
+
 	<br>
+
 	<h1>Waggons</h1>
+	
 	<table>
-		
 		<tr>
 			<th>Name</th>
 			<th>Nummer</th>
@@ -40,17 +35,12 @@
 		</tr>
 
 		{% for wagon in wagons %}
-		
 			<tr>
 				{% for item in wagon[1:] %}
 				<td>{{ item }}</td>
 				{% endfor %}
-			
 			</tr>
-
 		{% endfor %}
 	</table>
 	
-	</div>
-
 {% endblock %}

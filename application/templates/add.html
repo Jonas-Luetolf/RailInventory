@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="content">
+	
 	<form method="post" action="/add">
 		{{ form.csrf_token }}
 
@@ -22,16 +22,11 @@
 		{{ form.producer }}<br>
 		<label for="producer">Hersteller</label><br>
 
-		
 		{{ form.comment }}<br>
 		<label for="comment">Kommentar</label><br><br>
-		<button type="submit">speichern</button>
+
+		<button type="submit">Speichern</button>
 
 	</form>
-
-
-</div>
-
-
 
 {% endblock %}
