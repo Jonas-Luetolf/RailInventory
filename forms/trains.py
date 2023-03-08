@@ -1,9 +1,7 @@
 from wtforms import (
-    Form,
     IntegerField,
     SelectField,
     StringField,
-    SubmitField,
     TextAreaField,
     validators,
 )
@@ -15,6 +13,12 @@ class AddForm(FlaskForm):
         "train_type", choices=[("LOCOMOTIVE", "Lokomotive"), ("WAGON", "Wagon")]
     )
     name = StringField("name", validators=[validators.InputRequired()])
-    number = IntegerField("numbers", validators=[validators.InputRequired()])
+    number = IntegerField(
+        "numbers",
+        validators=[
+            validators.InputRequired(),
+            validators.NumberRange(min=0, message="Nummer muss grösser als 0 sein"),
+        ],
+    )
     producer = StringField("producer", validators=[validators.InputRequired()])
     comment = TextAreaField("comment", validators=[validators.InputRequired()])
