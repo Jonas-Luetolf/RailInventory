@@ -3,10 +3,10 @@ from .database import DataBase, TrainType
 from config import Config
 from forms.trains import AddForm
 
-routes = Blueprint("routes", __name__, url_prefix="/", template_folder="templates")
+views = Blueprint("views", __name__, url_prefix="/", template_folder="templates")
 
 
-@routes.route("/", methods=["GET"])
+@views.route("/", methods=["GET"])
 def index():
     """
     renders the index page
@@ -19,7 +19,7 @@ def index():
     return render_template("index.html", locomotives=locomotives, wagons=wagons)
 
 
-@routes.route("/overview", methods=["GET"])
+@views.route("/overview", methods=["GET"])
 def overview():
     """
     renders the overview template and inserts a list of all trains
@@ -30,7 +30,7 @@ def overview():
     raise NotImplemented
 
 
-@routes.route("/add", methods=["GET", "POST"])
+@views.route("/add", methods=["GET", "POST"])
 def add():
     """
     renders the add page or handels submited data
@@ -47,6 +47,6 @@ def add():
         db.add_train(**data)
         db.close()
 
-        return redirect(url_for("routes.index"))
+        return redirect(url_for("views.index"))
 
     return render_template("add.html", form=form)
