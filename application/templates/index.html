@@ -3,44 +3,44 @@
 
 {% block content %}
 	
-	<h1>Lokomotiven</h1>
+    <h1>Lokomotiven</h1>
 	
-	<table>
-		<tr>
-			<th>Name</th>
-			<th>Nummer</th>
-			<th>Hersteller</th>
-			<th>Kommentar</th>
-		</tr>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Nummer</th>
+            <th>Hersteller</th>
+            <th>Kommentar</th>
+        </tr>
 
-		{% for locomotive in locomotives %}	
-			<tr>				
-				{% for item in locomotive[1:] %}
-				<td>{{ item }}</td>
-				{% endfor %}
-			</tr>
-		{% endfor %}
-	</table>
+        {% for locomotive in locomotives %}	
+        <tr>				
+                {% for item in locomotive[1:] %}
+                <td>{{ item }}</td>
+                {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
 
-	<br>
+    <br>
 
-	<h1>Waggons</h1>
+    <h1>Waggons</h1>
 	
-	<table>
-		<tr>
-			<th>Name</th>
-			<th>Nummer</th>
-			<th>Hersteller</th>
-			<th>Kommentar</th>
-		</tr>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Nummer</th>
+            <th>Hersteller</th>
+            <th>Kommentar</th>
+        </tr>
 
-		{% for wagon in wagons %}
-			<tr>
-				{% for item in wagon[1:] %}
-				<td>{{ item }}</td>
-				{% endfor %}
-			</tr>
-		{% endfor %}
-	</table>
+        {% for wagon in wagons %}
+            <tr>
+                {% for item in wagon[1:] %}
+                <td>{{ item }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
 	
 {% endblock %}
