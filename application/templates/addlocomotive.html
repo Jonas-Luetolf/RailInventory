@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}RailInventory - Neu{% endblock %}
+
+{% block headlinks %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='form.css') }}"></link>	
+{% endblock %}
+
+{% block content %}
+	
+    <form method="post" action="/add/locomotive">
+        {{ form.csrf_token }}
+
+        {{ form.name }}<br>
+        <label for="name">Name</label><br>
+		
+        {{ form.number }}<br>
+        <label for="number">Nummer</label><br>
+   
+        {{ form.address }}<br>
+        <label for="address">Addresse</label><br>
+    
+        {{ form.sound }}<br>
+        <label for="sound">Sound</label><br>
+
+        {{ form.ltype }}<br>
+        <label for="ltype">Lokomotiev Typ</label><br>
+
+        {{ form.vmax }}<br>
+        <label for="vmax">max. Geschwindigkeit</label><br>
+
+        {{ form.power }}<br>
+        <label for="power">Leistung</label><br>
+
+        {{ form.year }}<br>
+        <label for="year">Baujahr</label><br>
+
+        {{ form.modelproducer }}<br>
+        <label for="modelproducer">Hersteller Modell</label><br>
+
+        {{ form.producer }}<br>
+        <label for="producer">Hersteller Original</label><br>
+
+        {{ form.comment }}<br>
+        <label for="comment">Kommentar</label><br><br>
+
+        <button type="submit">Speichern</button>
+
+    </form>
+
+{% endblock %}

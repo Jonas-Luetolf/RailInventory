@@ -43,7 +43,7 @@ class DataBase:
 
         query = """CREATE TABLE IF NOT EXISTS LOCOMOTIVE 
         (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,
-        number INTEGER, producer TEXT, comment TEXT)"""
+        number INTEGER, address INTEGER, sound INTEGER, ltype TEXT, vmax INTEGER, power INTEGER, year INTEGER, modelproducer TEXT, producer TEXT, comment TEXT)"""
 
         self.cursor.execute(query)
         self.conn.commit()
@@ -98,22 +98,20 @@ class DataBase:
 
         return result
 
-    def add_train(
-        self, train_type: TrainType, name: str, number: int, producer: str, comment: str
-    ) -> None:
+    def add_train(self, train_type: TrainType, **values) -> None:
         """
         add a new trains
 
         :param train_type: type of the train
-        :param name: name of the train
-        :param num: number of the train
-        :param producer: producer of the train
-        :param comment: comment to the train
+        :param values: all values of the train
         :return: None
         """
+        if train_type == TrainType.LOCOMOTIVE:
+            query = """INSERT INTO LOCOMOTIVE (name, number, address, sound, ltype, vmax, power, year, modelproducer, producer, comment)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
 
-        query = f"""INSERT INTO {train_type.name} (name, number, producer, comment)
-        VALUES (?, ?, ?, ?)"""
+        else:
+            query = """ INSERT INTO WAGON (name, number, producer,comment) VALUES (?, ?, ?, ?)"""
 
-        self.cursor.execute(query, (name, number, producer, comment))
+        self.cursor.execute(query, tuple(value for value in values.values()))
         self.conn.commit()

@@ -1,7 +1,6 @@
 from flask import Blueprint, redirect, render_template, request, url_for
 from .database import DataBase, TrainType
 from config import Config
-from forms.trains import AddForm
 
 views = Blueprint("views", __name__, url_prefix="/", template_folder="templates")
 
@@ -28,25 +27,3 @@ def overview():
     """
 
     raise NotImplemented
-
-
-@views.route("/add", methods=["GET", "POST"])
-def add():
-    """
-    renders the add page or handels submited data
-
-    :return:rendered template or redirect to index
-    """
-    form = AddForm()
-    if request.method == "POST" and form.validate():
-        data = form.data
-        del data["csrf_token"]
-        data["train_type"] = TrainType[data["train_type"]]
-
-        db = DataBase(Config.DATABASE)
-        db.add_train(**data)
-        db.close()
-
-        return redirect(url_for("views.index"))
-
-    return render_template("add.html", form=form)

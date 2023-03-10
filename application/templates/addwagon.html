@@ -7,11 +7,8 @@
 
 {% block content %}
 	
-    <form method="post" action="/add">
+    <form method="post" action="/add/wagon">
         {{ form.csrf_token }}
-
-        {{ form.train_type }}<br>
-        <label for="train_type">Zug Typ</label><br>
 
         {{ form.name }}<br>
         <label for="name">Name</label><br>
