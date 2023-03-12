@@ -18,7 +18,13 @@
                 <h1 class="logo"><a href="/">RailInventory</a></h1>
     	
                 <ul class="nav">
-                <li><a href="add">Hinzufügen</a></li>
+								<div class="dropdown">
+									<button class="dropbtn">Hinzufügen</button>
+										<div class="dropdown-content">
+											<a href="{{ url_for('add_views.locomotive') }}">Lokomotive</a>
+											<a href="{{ url_for('add_views.wagon') }}">Wagon</a>
+										</div>
+								</div>
                 <li><a href="#">Tools</a></li>
                 </ul>
 
