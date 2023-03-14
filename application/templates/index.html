@@ -17,12 +17,11 @@
             <th>Baujahr</th>
             <th>Hersteller Modell</th>
             <th>Hersteller Original</th>
-            <th>Kommentar</th>
         </tr>
 
         {% for locomotive in locomotives %}	
         <tr>				
-                {% for item in locomotive[1:] %}
+                {% for item in locomotive[1:-1] %}
                 <td>{{ item }}</td>
                 {% endfor %}
         </tr>
@@ -38,12 +37,11 @@
             <th>Name</th>
             <th>Nummer</th>
             <th>Hersteller</th>
-            <th>Kommentar</th>
         </tr>
 
         {% for wagon in wagons %}
             <tr>
-                {% for item in wagon[1:] %}
+                {% for item in wagon[1:-1] %}
                 <td>{{ item }}</td>
                 {% endfor %}
             </tr>
