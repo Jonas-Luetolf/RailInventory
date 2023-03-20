@@ -7,7 +7,7 @@ def main():
     """
     entry point for RailInventory
     """
-
+    
     app = create_app()
     app.run(host="localhost")
 
