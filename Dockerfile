@@ -9,7 +9,10 @@ COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 # Kopieren Sie den Rest des Codes in das Arbeitsverzeichnis
-COPY . .
+COPY forms forms
+COPY application application
+COPY main.py main.py
+COPY config.py config.py
 
 # Portnummer, auf dem der Container ausgeführt wird
 EXPOSE 443
@@ -17,5 +20,5 @@ EXPOSE 443
 
 
 # Starten Sie die Anwendung
-CMD ["gunicorn", "--certfile", "/var/certificate.pem", "--keyfile", "/var/key.pem","--bind", "0.0.0.0:443", "main:app"]
+CMD ["gunicorn", "--certfile", "/app/var/certificate.pem", "--keyfile", "/app/var/key.pem","--bind", "0.0.0.0:443", "main:app"]
 

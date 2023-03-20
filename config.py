@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import os
 
 
-env_path = Path(".") / ".env"
+env_path = Path(".") / "var" / ".env"
 load_dotenv(dotenv_path=env_path)
 
 
