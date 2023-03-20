@@ -9,5 +9,5 @@ case $1 in
         docker pull ghcr.io/jonas-luetolf/railinventory:main
         mkdir /var/RailInventory
 		openssl req -newkey rsa:2048 -nodes -keyout /var/RailInventory/key.pem -x509 -days 365 -out /var/RailInventory/certificate.pem
-		cp var/.env /var/RailInventory/.env;;		
+		wget -O /var/RailInventory/.env https://github.com/Jonas-Luetolf/RailInventory/releases/download/v0.0.1/default.env;;	
 	esac
