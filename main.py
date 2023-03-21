@@ -3,11 +3,12 @@ from config import Config
 
 app = create_app()
 
+
 def main():
     """
     entry point for RailInventory
     """
-    
+
     app = create_app()
     app.run(host="localhost")
 
