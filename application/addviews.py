@@ -20,7 +20,7 @@ def locomotive():
         db.close()
         return redirect(url_for("views.index"))
 
-    return render_template("addlocomotive.html", form=form)
+    return render_template("locomotive.html", form=form, action="/add/locomotive")
 
 
 @add_views.route("/wagon", methods=["GET", "POST"])
@@ -35,4 +35,4 @@ def wagon():
         db.close()
         return redirect(url_for("views.index"))
 
-    return render_template("addwagon.html", form=form)
+    return render_template("wagon.html", form=form, action="/add/wagon")
