@@ -30,3 +30,8 @@ table, th, td {
     border-collapse: collapse;
     text-align: center;
 }
+
+a.button :hover{
+    border-radius: 50%;
+		background-color: #4a5466;
+}
