@@ -9,6 +9,8 @@
 	
     <form method="post" action="{{ action }}">
         {{ form.csrf_token }}
+        {{ form.id }}
+
 
         {{ form.name }}<br>
         <label for="name">Name</label><br>

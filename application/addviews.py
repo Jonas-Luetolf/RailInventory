@@ -13,6 +13,7 @@ def locomotive():
     form = trains.LocomotiveForm()
     if request.method == "POST" and form.validate():
         data = form.data
+        del data["id"]
         del data["csrf_token"]
         train_type = TrainType.LOCOMOTIVE
         db = DataBase(Config.DATABASE)
@@ -29,6 +30,8 @@ def wagon():
     if request.method == "POST" and form.validate():
         data = form.data
         del data["csrf_token"]
+        del data["id"]
+
         train_type = TrainType.WAGON
         db = DataBase(Config.DATABASE)
         db.add_train(train_type, **data)
