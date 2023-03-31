@@ -115,3 +115,18 @@ class DataBase:
 
         self.cursor.execute(query, tuple(value for value in values.values()))
         self.conn.commit()
+
+    def update_train(self, train_type: TrainType, **values):
+        if train_type == TrainType.LOCOMOTIVE:
+            query = """UPDATE LOCOMOTIVE SET name = ?, number = ?, address = ?, sound = ?, ltype = ?, vmax = ?, power = ?, year = ?, modelproducer = ?, producer = ?, comment = ? WHERE id = ?"""
+
+        else:
+            query = (
+                """UPDATE WAGON SET name = ?, number = ?, producer = ?, comment = ?"""
+            )
+
+        id = values["id"]
+        del values["id"]
+
+        self.cursor.execute(query, tuple(value for value in values.values()) + (id,))
+        self.conn.commit()
