@@ -7,6 +7,7 @@
 	
     <table>
         <tr>
+						<th>Id</th>
             <th>Name</th>
             <th>Nummer</th>
             <th>Digitaladresse</th>
@@ -21,9 +22,11 @@
 
         {% for locomotive in locomotives %}	
         <tr>				
-                {% for item in locomotive[1:-1] %}
+                {% for item in locomotive[0:-1] %}
                 <td>{{ item }}</td>
                 {% endfor %}
+								<td><a href="{{ url_for('edit_views.locomotive', variable=locomotive[0]) }}"><img scr="pen-material-design.png"></a></td>
+
         </tr>
         {% endfor %}
     </table>
