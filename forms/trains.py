@@ -12,9 +12,8 @@ from flask_wtf import FlaskForm
 
 class WagonForm(FlaskForm):
     id = IntegerField(
-        widget=widgets.HiddenInput,
         default=0,
-        validators=[validators.NumberRange(min=0)],
+        validators=[validators.NumberRange(min=0), validators.Optional()],
     )
     name = StringField("name", validators=[validators.InputRequired()])
     number = IntegerField(
@@ -30,9 +29,7 @@ class WagonForm(FlaskForm):
 
 class LocomotiveForm(FlaskForm):
     id = IntegerField(
-        widget=widgets.HiddenInput,
-        default=0,
-        validators=[validators.NumberRange(min=0)],
+        validators=[validators.NumberRange(min=0), validators.Optional()], default=0
     )
     name = StringField("name", validators=[validators.InputRequired()])
     number = IntegerField(
