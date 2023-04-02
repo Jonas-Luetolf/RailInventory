@@ -8,8 +8,9 @@
 {% block content %}
 	
     <form method="post" action="{{ action }}">
+
         {{ form.csrf_token }}
-        {{ form.id }}
+        {{ form.id(type="hidden") }}
 
 
         {{ form.name }}<br>

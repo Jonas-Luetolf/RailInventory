@@ -64,13 +64,14 @@ class DataBase:
         :return: the data of the searched train
         """
 
+        self.cursor.row_factory = sqlite3.Row
         query = f"""SELECT * FROM {train_type.name} WHERE name = ?"""
 
         result = self.cursor.execute(query, (name,)).fetchall()
 
         return result
 
-    def get_train_by_id(self, train_type: TrainType, id: int) -> list:
+    def get_train_by_id(self, train_type: TrainType, id: int) -> dict:
         """
         gets a train by its id
 
@@ -78,11 +79,12 @@ class DataBase:
         :param id: id of the train
         :return: the data of the searched train
         """
+        self.cursor.row_factory = sqlite3.Row
         query = f"""SELECT * FROM {train_type.name} WHERE id = ?"""
 
         result = self.cursor.execute(query, (id,)).fetchall()
 
-        return result
+        return dict(result[0])
 
     def get_all_trains(self, train_type: TrainType) -> list:
         """
@@ -91,7 +93,7 @@ class DataBase:
         :param train_type: type of the train
         :return: list of all trains
         """
-
+        self.cursor.row_factory = None
         query = f"""SELECT * FROM {train_type.name}"""
 
         result = self.cursor.execute(query).fetchall()
@@ -121,9 +123,7 @@ class DataBase:
             query = """UPDATE LOCOMOTIVE SET name = ?, number = ?, address = ?, sound = ?, ltype = ?, vmax = ?, power = ?, year = ?, modelproducer = ?, producer = ?, comment = ? WHERE id = ?"""
 
         else:
-            query = (
-                """UPDATE WAGON SET name = ?, number = ?, producer = ?, comment = ?"""
-            )
+            query = """UPDATE WAGON SET name = ?, number = ?, producer = ?, comment = ? WHERE id = ?"""
 
         id = values["id"]
         del values["id"]
