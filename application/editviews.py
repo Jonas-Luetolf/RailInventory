@@ -8,20 +8,23 @@ edit_views = Blueprint(
 )
 
 
+def update_train(train_type: TrainType, data: dict) -> None:
+    db = DataBase(Config.DATABASE)
+    del data["csrf_token"]
+    db.update_train(train_type, **data)
+    db.close()
+
+
 @edit_views.route("/locomotive", methods=["GET", "POST"])
 def locomotive():
     form = trains.LocomotiveForm()
-    db = DataBase(Config.DATABASE)
 
     if request.method == "POST" and form.validate():
-        data = form.data
-        del data["csrf_token"]
-        train_type = TrainType.LOCOMOTIVE
-        db.update_train(train_type, **data)
-        db.close()
+        update_train(TrainType.LOCOMOTIVE, form.data)
         return redirect(url_for("views.index"))
 
     else:
+        db = DataBase(Config.DATABASE)
         form = trains.LocomotiveForm(
             data=db.get_train_by_id(TrainType.LOCOMOTIVE, request.args.get("id"))
         )
@@ -31,17 +34,13 @@ def locomotive():
 @edit_views.route("/wagon", methods=["GET", "POST"])
 def wagon():
     form = trains.WagonForm()
-    db = DataBase(Config.DATABASE)
 
     if request.method == "POST" and form.validate():
-        data = form.data
-        del data["csrf_token"]
-        train_type = TrainType.WAGON
-        db.update_train(train_type, **data)
-        db.close()
+        update_train(TrainType.WAGON, form.data)
         return redirect(url_for("views.index"))
 
     else:
+        db = DataBase(Config.DATABASE)
         form = trains.WagonForm(
             data=db.get_train_by_id(TrainType.WAGON, request.args.get("id"))
         )
