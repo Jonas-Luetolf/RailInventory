@@ -7,7 +7,7 @@
 	
     <table>
         <tr>
-			<th>Id</th>
+			<th>ID</th>
             <th>Name</th>
             <th>Nummer</th>
             <th>Digitaladresse</th>
@@ -23,7 +23,7 @@
 
         {% for locomotive in locomotives %}	
         <tr>				
-                {% for item in locomotive[0:-1] %}
+                {% for item in locomotive %}
                 <td>{{ item }}</td>
                 {% endfor %}
 				<td><a href="{{ url_for('edit_views.locomotive', id=locomotive[0]) }}">mehr</a></td>
@@ -38,6 +38,7 @@
 	
     <table>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Nummer</th>
             <th>Hersteller</th>
@@ -46,7 +47,7 @@
 
         {% for wagon in wagons %}
             <tr>
-                {% for item in wagon[1:-1] %}
+                {% for item in wagon %}
                 <td>{{ item }}</td>
                 {% endfor %}
                 <td><a href="{{ url_for('edit_views.wagon', id=wagon[0]) }}">mehr</a></td>
