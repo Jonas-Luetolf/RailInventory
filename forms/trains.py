@@ -66,6 +66,13 @@ class LocomotiveForm(FlaskForm):
             ),
         ],
     )
+    power = IntegerField(
+        "power",
+        validators=[
+            validators.InputRequired(),
+            validators.NumberRange(min=0, message="Leistung muss grösser als 0 sein"),
+        ],
+    )
     year = IntegerField(
         "year",
         validators=[
@@ -74,13 +81,6 @@ class LocomotiveForm(FlaskForm):
         ],
     )
 
-    power = IntegerField(
-        "power",
-        validators=[
-            validators.InputRequired(),
-            validators.NumberRange(min=0, message="Leistung muss grösser als 0 sein"),
-        ],
-    )
     modelproducer = StringField("producer", validators=[validators.InputRequired()])
     producer = StringField("producer", validators=[validators.InputRequired()])
     comment = TextAreaField("comment", validators=[validators.InputRequired()])
