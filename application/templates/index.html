@@ -23,7 +23,7 @@
 
         {% for locomotive in locomotives %}	
         <tr>				
-                {% for item in locomotive %}
+                {% for item in locomotive[:-1] %}
                 <td>{{ item }}</td>
                 {% endfor %}
 				<td><a href="{{ url_for('edit_views.locomotive', id=locomotive[0]) }}">mehr</a></td>
@@ -47,7 +47,7 @@
 
         {% for wagon in wagons %}
             <tr>
-                {% for item in wagon %}
+                {% for item in wagon[:-1] %}
                 <td>{{ item }}</td>
                 {% endfor %}
                 <td><a href="{{ url_for('edit_views.wagon', id=wagon[0]) }}">mehr</a></td>
