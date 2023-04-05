@@ -1,0 +1,6 @@
+flask
+Flask-WTF
+gunicorn
+python-dotenv
+black
+Flask-Testing
