@@ -7,8 +7,11 @@
 
 {% block content %}
 	
-    <form method="post" action="/add/locomotive">
+    <form method="post" action="{{ action }}">
+
         {{ form.csrf_token }}
+        {{ form.id(type="hidden") }}
+
 
         {{ form.name }}<br>
         <label for="name">Name</label><br>

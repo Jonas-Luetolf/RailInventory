@@ -8,31 +8,29 @@ add_views = Blueprint(
 )
 
 
+def add_train(train_type: TrainType, data: dict) -> None:
+    del data["id"]
+    del data["csrf_token"]
+    db = DataBase(Config.DATABASE)
+    db.add_train(train_type, **data)
+    db.close()
+
+
 @add_views.route("/locomotive", methods=["GET", "POST"])
 def locomotive():
     form = trains.LocomotiveForm()
     if request.method == "POST" and form.validate():
-        data = form.data
-        del data["csrf_token"]
-        train_type = TrainType.LOCOMOTIVE
-        db = DataBase(Config.DATABASE)
-        db.add_train(train_type, **data)
-        db.close()
+        add_train(TrainType.LOCOMOTIVE, form.data)
         return redirect(url_for("views.index"))
 
-    return render_template("addlocomotive.html", form=form)
+    return render_template("locomotive.html", form=form, action="/add/locomotive")
 
 
 @add_views.route("/wagon", methods=["GET", "POST"])
 def wagon():
     form = trains.WagonForm()
     if request.method == "POST" and form.validate():
-        data = form.data
-        del data["csrf_token"]
-        train_type = TrainType.WAGON
-        db = DataBase(Config.DATABASE)
-        db.add_train(train_type, **data)
-        db.close()
+        add_train(TrainType.WAGON, form.data)
         return redirect(url_for("views.index"))
 
-    return render_template("addwagon.html", form=form)
+    return render_template("wagon.html", form=form, action="/add/wagon")
