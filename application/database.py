@@ -175,8 +175,5 @@ class DataBase:
             params = adjust_train_values(TrainType.WAGON, values, id_req=True)
             query = """UPDATE WAGON SET name = ?, number = ?, producer = ?, comment = ? WHERE id = ?"""
 
-        id = params["id"]
-        del params["id"]
-
-        self.cursor.execute(query, tuple(value for value in params.values()) + (id,))
+        self.cursor.execute(query, tuple(value for value in list(params.values())[1:]) + (list(params.values())[0],))
         self.conn.commit()
