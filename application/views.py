@@ -16,14 +16,3 @@ def index():
     locomotives = db.get_all_trains(train_type=TrainType.LOCOMOTIVE)
     wagons = db.get_all_trains(train_type=TrainType.WAGON)
     return render_template("index.html", locomotives=locomotives, wagons=wagons)
-
-
-@views.route("/overview", methods=["GET"])
-def overview():
-    """
-    renders the overview template and inserts a list of all trains
-
-    :return: rendered template
-    """
-
-    raise NotImplemented
