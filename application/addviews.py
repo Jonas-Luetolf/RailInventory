@@ -1,7 +1,6 @@
-from flask import Blueprint, redirect, render_template, url_for, request
+from flask import Blueprint, redirect, render_template, url_for, request, current_app
 from forms import trains
 from .database import DataBase, TrainType
-from config import Config
 
 add_views = Blueprint(
     "add_views", __name__, url_prefix="/add/", template_folder="templates"
@@ -11,7 +10,7 @@ add_views = Blueprint(
 def add_train(train_type: TrainType, data: dict) -> None:
     del data["id"]
     del data["csrf_token"]
-    db = DataBase(Config.DATABASE)
+    db = DataBase(current_app.config["DATABASE"])
     db.add_train(train_type, **data)
     db.close()
 

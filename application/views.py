@@ -1,6 +1,5 @@
-from flask import Blueprint, redirect, render_template, request, url_for
+from flask import Blueprint, redirect, render_template, request, url_for, current_app
 from .database import DataBase, TrainType
-from config import Config
 
 views = Blueprint("views", __name__, url_prefix="/", template_folder="templates")
 
@@ -12,7 +11,7 @@ def index():
 
     :return: rendered template
     """
-    db = DataBase(Config.DATABASE)
+    db = DataBase(current_app.config["DATABASE"])
     locomotives = db.get_all_trains(train_type=TrainType.LOCOMOTIVE)
     wagons = db.get_all_trains(train_type=TrainType.WAGON)
     return render_template("index.html", locomotives=locomotives, wagons=wagons)
