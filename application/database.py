@@ -100,7 +100,7 @@ class DataBase:
         self.cursor.execute(query)
         self.conn.commit()
 
-    def get_train_by_name(self, train_type: TrainType, name: str) -> list:
+    def get_train_by_name(self, train_type: TrainType, name: str) -> dict:
         """
         gets the train by name
 
@@ -114,7 +114,7 @@ class DataBase:
 
         result = self.cursor.execute(query, (name,)).fetchall()
 
-        return result
+        return dict(result[0])
 
     def get_train_by_id(self, train_type: TrainType, id: int) -> dict:
         """

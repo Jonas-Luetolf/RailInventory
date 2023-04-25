@@ -17,7 +17,6 @@ def create_app() -> Flask:
 
     app = Flask("RailInventory", static_folder="application/static")
     app.config.from_object(Config)
-
     app.register_blueprint(views)
     app.register_blueprint(add_views)
     app.register_blueprint(edit_views)
