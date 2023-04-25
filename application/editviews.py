@@ -10,7 +10,8 @@ edit_views = Blueprint(
 
 def update_train(train_type: TrainType, data: dict) -> None:
     db = DataBase(current_app.config["DATABASE"])
-    if "csrf_token" in data: del data["csrf_token"]
+    if "csrf_token" in data:
+        del data["csrf_token"]
     db.update_train(train_type, **data)
     db.close()
 

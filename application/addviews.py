@@ -9,7 +9,8 @@ add_views = Blueprint(
 
 def add_train(train_type: TrainType, data: dict) -> None:
     del data["id"]
-    if "csrf_token" in data: del data["csrf_token"] 
+    if "csrf_token" in data:
+        del data["csrf_token"]
     db = DataBase(current_app.config["DATABASE"])
     db.add_train(train_type, **data)
     db.close()
