@@ -15,6 +15,3 @@ class Config:
     DEBUG = os.getenv("DEBUG")
     DATABASE = Path(str(os.getenv("DATABASE")))
     SECRET_KEY = uuid4().hex
-
-
-c = Config()

@@ -7,12 +7,7 @@ class TrainType(Enum):
     LOCOMOTIVE = 1
     WAGON = 2
 
-
-def adjust_train_values(
-    train_type: TrainType, values: dict, id_req: bool = True
-) -> dict:
-    if train_type == TrainType.LOCOMOTIVE:
-        excepted_dict = {
+LOCOMOTIVE_DATA_STRUCTURE = {
             "id": None,
             "name": None,
             "number": None,
@@ -25,16 +20,24 @@ def adjust_train_values(
             "modelproducer": None,
             "producer": None,
             "comment": None,
-        }
+        } 
 
-    else:
-        excepted_dict = {
+WAGON_DATA_STRUCTURE ={
             "id": None,
             "name": None,
             "number": None,
             "producer": None,
             "comment": None,
-        }
+        } 
+
+def adjust_train_values(
+    train_type: TrainType, values: dict, id_req: bool = True
+) -> dict:
+    if train_type == TrainType.LOCOMOTIVE:
+        excepted_dict = LOCOMOTIVE_DATA_STRUCTURE
+        
+    else:
+        excepted_dict = WAGON_DATA_STRUCTURE
 
     if id_req == False:
         del excepted_dict["id"]
@@ -45,8 +48,7 @@ def adjust_train_values(
         )
 
     # order values
-    for key in excepted_dict:
-        excepted_dict[key] = values[key]
+    for key in excepted_dict: excepted_dict[key] = values[key]
 
     return excepted_dict
 
@@ -98,7 +100,7 @@ class DataBase:
         self.cursor.execute(query)
         self.conn.commit()
 
-    def get_train_by_name(self, train_type: TrainType, name: str) -> list:
+    def get_train_by_name(self, train_type: TrainType, name: str) -> dict:
         """
         gets the train by name
 
@@ -112,7 +114,7 @@ class DataBase:
 
         result = self.cursor.execute(query, (name,)).fetchall()
 
-        return result
+        return dict(result[0])
 
     def get_train_by_id(self, train_type: TrainType, id: int) -> dict:
         """
@@ -173,8 +175,5 @@ class DataBase:
             params = adjust_train_values(TrainType.WAGON, values, id_req=True)
             query = """UPDATE WAGON SET name = ?, number = ?, producer = ?, comment = ? WHERE id = ?"""
 
-        id = params["id"]
-        del params["id"]
-
-        self.cursor.execute(query, tuple(value for value in params.values()) + (id,))
+        self.cursor.execute(query, tuple(value for value in list(params.values())[1:]) + (list(params.values())[0],))
         self.conn.commit()
