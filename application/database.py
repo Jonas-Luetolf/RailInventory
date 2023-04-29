@@ -34,10 +34,10 @@ def adjust_train_values(
     train_type: TrainType, values: dict, id_req: bool = True
 ) -> dict:
     if train_type == TrainType.LOCOMOTIVE:
-        excepted_dict = LOCOMOTIVE_DATA_STRUCTURE
+        excepted_dict = LOCOMOTIVE_DATA_STRUCTURE.copy()
         
     else:
-        excepted_dict = WAGON_DATA_STRUCTURE
+        excepted_dict = WAGON_DATA_STRUCTURE.copy()
 
     if id_req == False:
         del excepted_dict["id"]
