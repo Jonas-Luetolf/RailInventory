@@ -1,4 +1,5 @@
 flask
 Flask-WTF
+Flask-Testing
 gunicorn
 python-dotenv
