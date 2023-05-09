@@ -10,7 +10,7 @@ case $1 in
         
         mkdir /var/RailInventory
 		openssl req -newkey rsa:2048 -nodes -keyout /var/RailInventory/key.pem -x509 -days 365 -out /var/RailInventory/certificate.pem
-		wget -O /var/RailInventory/.env https://github.com/Jonas-Luetolf/RailInventory/releases/download/v1.0/default.env;;	
+		wget -O /var/RailInventory/.env https://github.com/Jonas-Luetolf/RailInventory/releases/download/v1.1/default.env;;	
 
     "update")
         docker kill ghcr.io/jonas-luetolf/railinventory:main
