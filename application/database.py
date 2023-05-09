@@ -7,35 +7,38 @@ class TrainType(Enum):
     LOCOMOTIVE = 1
     WAGON = 2
 
-LOCOMOTIVE_DATA_STRUCTURE = {
-            "id": None,
-            "name": None,
-            "number": None,
-            "address": None,
-            "sound": None,
-            "ltype": None,
-            "vmax": None,
-            "power": None,
-            "year": None,
-            "modelproducer": None,
-            "producer": None,
-            "comment": None,
-        } 
 
-WAGON_DATA_STRUCTURE ={
-            "id": None,
-            "name": None,
-            "number": None,
-            "producer": None,
-            "comment": None,
-        } 
+LOCOMOTIVE_DATA_STRUCTURE = {
+    "id": None,
+    "name": None,
+    "number": None,
+    "address": None,
+    "protocol": None,
+    "sound": None,
+    "ltype": None,
+    "vmax": None,
+    "power": None,
+    "year": None,
+    "modelproducer": None,
+    "producer": None,
+    "comment": None,
+}
+
+WAGON_DATA_STRUCTURE = {
+    "id": None,
+    "name": None,
+    "number": None,
+    "producer": None,
+    "comment": None,
+}
+
 
 def adjust_train_values(
     train_type: TrainType, values: dict, id_req: bool = True
 ) -> dict:
     if train_type == TrainType.LOCOMOTIVE:
         excepted_dict = LOCOMOTIVE_DATA_STRUCTURE.copy()
-        
+
     else:
         excepted_dict = WAGON_DATA_STRUCTURE.copy()
 
@@ -48,7 +51,8 @@ def adjust_train_values(
         )
 
     # order values
-    for key in excepted_dict: excepted_dict[key] = values[key]
+    for key in excepted_dict:
+        excepted_dict[key] = values[key]
 
     return excepted_dict
 
@@ -88,7 +92,7 @@ class DataBase:
 
         query = """CREATE TABLE IF NOT EXISTS LOCOMOTIVE 
         (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,
-        number INTEGER, address INTEGER, sound INTEGER, ltype TEXT, vmax INTEGER, power INTEGER, year INTEGER, modelproducer TEXT, producer TEXT, comment TEXT)"""
+        number INTEGER, address INTEGER, protocol TEXT,sound INTEGER, ltype TEXT, vmax INTEGER, power INTEGER, year INTEGER, modelproducer TEXT, producer TEXT, comment TEXT)"""
 
         self.cursor.execute(query)
         self.conn.commit()
@@ -156,8 +160,8 @@ class DataBase:
 
         if train_type == TrainType.LOCOMOTIVE:
             params = adjust_train_values(TrainType.LOCOMOTIVE, values, id_req=False)
-            query = """INSERT INTO LOCOMOTIVE (name, number, address, sound, ltype, vmax, power, year, modelproducer, producer, comment)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+            query = """INSERT INTO LOCOMOTIVE (name, number, address,protocol, sound, ltype, vmax, power, year, modelproducer, producer, comment)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)"""
 
         else:
             params = adjust_train_values(TrainType.WAGON, values, id_req=False)
@@ -169,11 +173,15 @@ class DataBase:
     def update_train(self, train_type: TrainType, **values):
         if train_type == TrainType.LOCOMOTIVE:
             params = adjust_train_values(TrainType.LOCOMOTIVE, values, id_req=True)
-            query = """UPDATE LOCOMOTIVE SET name = ?, number = ?, address = ?, sound = ?, ltype = ?, vmax = ?, power = ?, year = ?, modelproducer = ?, producer = ?, comment = ? WHERE id = ?"""
+            query = """UPDATE LOCOMOTIVE SET name = ?, number = ?, address = ?,protocol=?, sound = ?, ltype = ?, vmax = ?, power = ?, year = ?, modelproducer = ?, producer = ?, comment = ? WHERE id = ?"""
 
         else:
             params = adjust_train_values(TrainType.WAGON, values, id_req=True)
             query = """UPDATE WAGON SET name = ?, number = ?, producer = ?, comment = ? WHERE id = ?"""
 
-        self.cursor.execute(query, tuple(value for value in list(params.values())[1:]) + (list(params.values())[0],))
+        self.cursor.execute(
+            query,
+            tuple(value for value in list(params.values())[1:])
+            + (list(params.values())[0],),
+        )
         self.conn.commit()

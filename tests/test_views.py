@@ -1,34 +1,10 @@
 from pathlib import Path
-
-from werkzeug.wrappers import response
 from application import create_app
 from flask_testing import TestCase
 import tempfile
 import sqlite3
 from application import database as db
-
-TESTLOCOMOTIVE = {
-    "id": 1,
-    "name": "test_entry",
-    "number": 123,
-    "address": 123,
-    "sound": 1,
-    "ltype": "test",
-    "vmax": 123,
-    "power": 123,
-    "year": 1234,
-    "modelproducer": "test",
-    "producer": "test",
-    "comment": "test",
-}
-
-TESTWAGON = {
-    "id": 1,
-    "name": "test_entry",
-    "number": 123,
-    "producer": "test",
-    "comment": "sdfasdf",
-}
+from .testdata import TESTLOCOMOTIVE, TESTWAGON
 
 
 class test_views(TestCase):
@@ -43,7 +19,7 @@ class test_views(TestCase):
         self.db = db.DataBase(Path(self.db_file))
         conn = sqlite3.connect(self.db_file)
         conn.cursor().execute(
-            f"""INSERT INTO LOCOMOTIVE (name, number, address, sound, ltype, vmax, power, year, modelproducer, producer, comment)
+            f"""INSERT INTO LOCOMOTIVE (name, number, address,protocol, sound, ltype, vmax, power, year, modelproducer, producer, comment)
         VALUES {tuple(list(TESTLOCOMOTIVE.values())[1:])}"""
         )
         conn.cursor().execute(

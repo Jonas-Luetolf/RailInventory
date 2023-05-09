@@ -48,6 +48,7 @@ class LocomotiveForm(FlaskForm):
         ],
     )
 
+    protocol = StringField("protocol", validators=[validators.InputRequired()])
     sound = IntegerField(
         "sound",
         validators=[
