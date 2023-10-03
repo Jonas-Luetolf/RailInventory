@@ -6,29 +6,29 @@
     <h1>Lokomotiven</h1>
 	
     <table>
+        {% set fields = {"id":"ID", "name":"Name","number":"Nummer","address":"Addresse","protocol":"Digitalprotokoll","sound":"Sound","ltype":"Lokomotiv-Typ","vmax":"Vmax","power":"Leistung","year":"Baujahr","modelproducer":"Hersteller Modell","producer":"Hersteller Original"} %}
         <tr>
-			<th>ID</th>
-            <th>Name</th>
-            <th>Nummer</th>
-            <th>Digitaladresse</th>
-            <th>Protokoll</th>
-            <th>Sound</th>
-            <th>Lok Typ</th>
-            <th>vMax</th>
-            <th>Leistung</th>
-            <th>Baujahr</th>
-            <th>Hersteller Modell</th>
-            <th>Hersteller Original</th>
-            <th></th>
-        </tr>
 
+        {% for name in fields.values() %}
+        <th>{{ name }}</th>
+        {% endfor %}
+        <th></th>
+        </tr>
+        
         {% for locomotive in locomotives %}	
         <tr>				
-                {% for item in locomotive[:-1] %}
-                <td>{{ item }}</td>
-                {% endfor %}
-				<td><a href="{{ url_for('edit_views.locomotive', id=locomotive[0]) }}">mehr</a></td>
+            {% for key in fields.keys() %}
+                {% if key in locomotive.data.keys() %}
+                    <td>{{ locomotive.data[key] }}</td>
+                {% else %}
+                    <td> </td>
 
+                {% endif %}
+
+            {% endfor %}
+            
+            <td><a href="{{ url_for('edit_views.locomotive', id=locomotive.data.id) }}">mehr</a></td>
+            
         </tr>
         {% endfor %}
     </table>
@@ -38,20 +38,28 @@
     <h1>Waggons</h1>
 	
     <table>
+        {% set fields = {"id":"ID", "name":"Name", "number":"Nummer", "producer":"Hersteller"} %}
+
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Nummer</th>
-            <th>Hersteller</th>
+            {% for name in fields.values() %}
+                <th>{{name}}</th>
+            {% endfor %}
+
             <th></th>
         </tr>
 
         {% for wagon in wagons %}
             <tr>
-                {% for item in wagon[:-1] %}
-                <td>{{ item }}</td>
+                {% for key in fields.keys() %}
+                {% if key in wagon.data.keys() %}
+                    <td>{{ wagon.data[key] }}</td>
+                {% else %}
+                    <td> </td>
+                  
+                {% endif %}
+
                 {% endfor %}
-                <td><a href="{{ url_for('edit_views.wagon', id=wagon[0]) }}">mehr</a></td>
+                <td><a href="{{ url_for('edit_views.wagon', id=wagon.data.id) }}">mehr</a></td>
 
             </tr>
         {% endfor %}
