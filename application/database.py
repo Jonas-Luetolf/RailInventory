@@ -57,6 +57,13 @@ def adjust_train_values(
     return excepted_dict
 
 
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
+
+
 class DataBase:
     """
     used to write to and read from a local DataBase
@@ -142,7 +149,7 @@ class DataBase:
         :param train_type: type of the train
         :return: list of all trains
         """
-        self.cursor.row_factory = None
+        self.cursor.row_factory = dict_factory
         query = f"""SELECT * FROM {train_type.name}"""
 
         result = self.cursor.execute(query).fetchall()
