@@ -15,10 +15,10 @@ COPY main.py main.py
 COPY config.py config.py
 
 # Portnummer, auf dem der Container ausgeführt wird
-EXPOSE 443
+EXPOSE 80
 
 
 
 # Starten Sie die Anwendung
-CMD ["gunicorn", "--certfile", "/app/var/certificate.pem", "--keyfile", "/app/var/key.pem","--bind", "0.0.0.0:443", "main:app"]
+CMD ["gunicorn", "0.0.0.0:80", "main:app"]
 
