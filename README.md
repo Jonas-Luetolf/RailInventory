@@ -11,7 +11,7 @@
 ## Instalation
 
 1. download the installation script with this command
-```wget https://github.com/Jonas-Luetolf/RailInventory/releases/download/v0.0.1/railinventory.sh```
+```wget https://github.com/Jonas-Luetolf/RailInventory/releases/download/v1.1/railinventory.sh```
 
 2. run the init command to download the Docker container and set up the configs
 ``` bash railinventory.sh init```
