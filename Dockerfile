@@ -20,5 +20,5 @@ EXPOSE 80
 
 
 # Starten Sie die Anwendung
-CMD ["gunicorn", "0.0.0.0:80", "main:app"]
+CMD ["gunicorn","--bind", "0.0.0.0:80", "main:app"]
 
