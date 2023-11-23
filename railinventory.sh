@@ -3,7 +3,7 @@
 
 case $1 in
 	"run") 
-        docker run --restart=always -p 443:443 -d --mount type=bind,source=/var/RailInventory,target=/app/var -it ghcr.io/jonas-luetolf/railinventory:main;;
+        docker run --restart=always -p 80:80 -d --mount type=bind,source=/var/RailInventory,target=/app/var -it ghcr.io/jonas-luetolf/railinventory:main;;
 	
 	"init") 
         docker pull ghcr.io/jonas-luetolf/railinventory:main
